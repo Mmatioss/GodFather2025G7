@@ -11,12 +11,15 @@ public class MovementScript : MonoBehaviour
     [SerializeField] float _dashDuration = 1f;
     [SerializeField] float _coolDownDash = 2;
     private bool _isDashing = false;
+    private bool _canDash = false;
+
 
 
     private Vector3 _lastDir = Vector3.right;
+
+
     void Start()
     {
-
     }
 
     public void OnMovement(InputAction.CallbackContext c)
@@ -30,7 +33,15 @@ public class MovementScript : MonoBehaviour
 
         _lastDir = dir == Vector2.zero ? _lastDir : dir.normalized;
 
-        print(dir + " // " + _playerSpeed * Time.deltaTime);
+
+        transform.GetChild(0).position = transform.position + _lastDir;
+        float theta = Mathf.Tan(_lastDir.y / _lastDir.x);
+
+        print(theta * Mathf.Rad2Deg);
+        transform.GetChild(0).LookAt(transform.position);
+        transform.GetChild(0).localEulerAngles = new Vector3(transform.GetChild(0).localEulerAngles.x,90, transform.GetChild(0).localEulerAngles.z);
+
+
 
         transform.position += new Vector3(dir.x, dir.y) * (_playerSpeed * Time.deltaTime);
     }
@@ -46,9 +57,10 @@ public class MovementScript : MonoBehaviour
     public void OnDash(InputAction.CallbackContext c)
     {
         if (!c.performed) return;
-        if (_isDashing) return;
+        if (_isDashing && _canDash) return;
 
         _isDashing = true;
+        _canDash = false;
         StartCoroutine(DoDash());
     }
 
@@ -66,11 +78,14 @@ public class MovementScript : MonoBehaviour
         }
 
         _isDashing = false;
+        yield return new WaitForSeconds(_coolDownDash);
+        _canDash = true;
     }
 
     private void OnDrawGizmos()
     {
         Debug.DrawLine(transform.position, transform.position + _lastDir);
     }
+
 
 }
