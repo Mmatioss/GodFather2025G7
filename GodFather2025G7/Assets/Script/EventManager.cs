@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    [SerializeField] private float _timeBetweenEvents = 30f;
     [SerializeField] private float _timeWheelSpin = 10f;
     [SerializeField] private float _wheelSpeed = 30f;
     [SerializeField] private float _wheelShowTime = 3f;
@@ -18,7 +17,6 @@ public class EventManager : MonoBehaviour
     private enum TimerEventType
     {
         Start,
-        Wait,
         Show
     }
     [System.Serializable]
@@ -27,11 +25,12 @@ public class EventManager : MonoBehaviour
         public string name;
         public int probability;
         public GameObject eventObject;
+        public string message;
     }
     void Start()
     {
         SetRandomListEvent();
-        GameEventLoop();
+        _eventUiMask.SetActive(false);
     }
 
     void Update()
@@ -61,21 +60,25 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    void GameEventLoop()
+    public void StartWheel()
     {
-        StartCoroutine(TimerEvent(_timeBetweenEvents, TimerEventType.Wait));
-        _eventUiMask.SetActive(false);
-    }
-
-    void StartWheel()
-    {
+        this.gameObject.GetComponent<AudioSource>().Play();
+        _eventUiMask.SetActive(true);
         _eventContainer.GetComponent<Rigidbody2D>().linearVelocityY += -_wheelSpeed;
         StartCoroutine(TimerEvent(_timeWheelSpin, TimerEventType.Start));
     }
 
     void CallEvent(EventData eventData)
     {
-        eventData.eventObject.GetComponent<ParentEvent>().SendMessage("DoEvent");
+        if (eventData.message != "")
+        {
+            eventData.eventObject.GetComponent<ParentEvent>().SendMessage("DoEvent", eventData.message);
+            return;
+        }
+        else
+        {
+            eventData.eventObject.GetComponent<ParentEvent>().SendMessage("DoEvent");
+        }
     }
 
     EventData GetRandomEvent()
@@ -115,13 +118,8 @@ public class EventManager : MonoBehaviour
             case TimerEventType.Start:
                 _tryStop = true;
                 break;
-            case TimerEventType.Wait:
-                _eventUiMask.SetActive(true);
-                StartWheel();
-                break;
             case TimerEventType.Show:
                 _eventUiMask.SetActive(false);
-                GameEventLoop();
                 break;
         }
     }
