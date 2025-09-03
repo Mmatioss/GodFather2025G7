@@ -18,7 +18,6 @@ public class EventManager : MonoBehaviour
     private enum TimerEventType
     {
         Start,
-        Wait,
         Show
     }
     [System.Serializable]
@@ -31,7 +30,7 @@ public class EventManager : MonoBehaviour
     void Start()
     {
         SetRandomListEvent();
-        GameEventLoop();
+        _eventUiMask.SetActive(false);
     }
 
     void Update()
@@ -61,14 +60,9 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    void GameEventLoop()
+    public void StartWheel()
     {
-        StartCoroutine(TimerEvent(_timeBetweenEvents, TimerEventType.Wait));
-        _eventUiMask.SetActive(false);
-    }
-
-    void StartWheel()
-    {
+        _eventUiMask.SetActive(true);
         _eventContainer.GetComponent<Rigidbody2D>().linearVelocityY += -_wheelSpeed;
         StartCoroutine(TimerEvent(_timeWheelSpin, TimerEventType.Start));
     }
@@ -115,13 +109,8 @@ public class EventManager : MonoBehaviour
             case TimerEventType.Start:
                 _tryStop = true;
                 break;
-            case TimerEventType.Wait:
-                _eventUiMask.SetActive(true);
-                StartWheel();
-                break;
             case TimerEventType.Show:
                 _eventUiMask.SetActive(false);
-                GameEventLoop();
                 break;
         }
     }
