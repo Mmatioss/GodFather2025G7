@@ -11,21 +11,34 @@ public class MovementScript : MonoBehaviour
     [SerializeField] float _dashPower = 50f;
     [SerializeField] float _dashDuration = 1f;
     [SerializeField] float _coolDownDash = 2;
+    [Space(50),SerializeField] float TimeToCatch = 1;
+
+
     private bool _isDashing = false;
     private bool _canDash = true;
+    private bool _canCatch = true;
 
+    BoxCollider2D Catcher;
 
 
     private Vector3 _lastDir = Vector3.right;
 
     LineRenderer _linerenderer;
+
+    lancer _lancer;
+    Rigidbody2D _rb;
     void Start()
     {
+        _rb = GetComponent<Rigidbody2D>();
         _linerenderer = GetComponent<LineRenderer>();
+        _lancer = GetComponent<lancer>();
+        Catcher = GetComponentInChildren<BoxCollider2D>();
+        Catcher.gameObject.SetActive(false);
     }
     private void Update()
     {
-        if (_isDashing) _linerenderer.SetPositions(new Vector3[2] { transform.position, transform.position + _lastDir * 2 });
+        _linerenderer.SetPositions(new Vector3[2] { transform.position + Vector3.forward, transform.position + _lastDir * 2 });
+
     }
     public void OnMovement(InputAction.CallbackContext c)
     {
@@ -37,25 +50,37 @@ public class MovementScript : MonoBehaviour
 
         if (IsSpeedNormalized) dir = dir.normalized;
 
-        _linerenderer.SetPositions(new Vector3[2] { transform.position + Vector3.forward, transform.position + _lastDir * 2 });
 
-        transform.position += new Vector3(dir.x, dir.y) * (_playerSpeed * Time.deltaTime);
+        _rb.linearVelocity = (new Vector3(dir.x, dir.y) *_playerSpeed);
     }
 
     public void OnShoot(InputAction.CallbackContext c)
     {
+        if (!_lancer) return;
         if (!c.performed) return;
         if (_isDashing) return;
 
-        print("SHHHHHHHOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOT");
-    }
 
+        if(_lancer._CanLancer)
+            _lancer.lancerchap(_lastDir);
+        else if(_canCatch)
+        {
+            StartCoroutine(CatchTime());
+        }
+    }
+    IEnumerator CatchTime()
+    {
+        _canCatch = false;
+        Catcher.gameObject.SetActive(true);
+        yield return new WaitForSeconds(TimeToCatch);
+        Catcher.gameObject.SetActive(false);
+        _canCatch = true;
+    }
     public void OnDash(InputAction.CallbackContext c)
     {
         if (!c.performed) return;
         if (_isDashing) return;
         if (!_canDash) return;
-        print("4");
 
         _isDashing = true;
         _canDash = false;
