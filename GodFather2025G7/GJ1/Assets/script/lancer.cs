@@ -29,8 +29,8 @@ public class lancer : MonoBehaviour
         // Pour la souris (clic droit)
         bool lancerInput = Input.GetMouseButtonUp(1);
 
-        // Pour la manette (Fire2 est souvent le bouton "B" ou "O")
-        lancerInput |= Input.GetButtonUp("Fire2");
+        // Pour la manette (c'est A là)
+        lancerInput |= Input.GetButtonUp("Fire1");
 
         if (lancerInput)
         {
