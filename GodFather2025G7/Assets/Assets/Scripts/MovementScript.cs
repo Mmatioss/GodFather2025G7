@@ -68,6 +68,7 @@ public class MovementScript : MonoBehaviour
             StartCoroutine(CatchTime());
         }
     }
+
     IEnumerator CatchTime()
     {
         _canCatch = false;
@@ -103,5 +104,14 @@ public class MovementScript : MonoBehaviour
         yield return new WaitForSeconds(_coolDownDash);
         print("HAYEEEEEEEEEE");
         _canDash = true;
+    }
+
+    public void OnStart(InputAction.CallbackContext c)
+    {
+        if (c.performed)
+        {
+            PlayerManager p = FindAnyObjectByType<PlayerManager>();
+            p.StartGame();
+        }
     }
 }
