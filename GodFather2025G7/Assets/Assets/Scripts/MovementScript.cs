@@ -21,7 +21,7 @@ public class MovementScript : MonoBehaviour
     BoxCollider2D Catcher;
 
 
-    private Vector3 _lastDir = Vector3.right;
+    public Vector3 _lastDir = Vector3.right;
 
     LineRenderer _linerenderer;
 
@@ -61,7 +61,7 @@ public class MovementScript : MonoBehaviour
         if (_isDashing) return;
 
 
-        if(_lancer._CanLancer)
+        if(_lancer._chapInstantiate)
             _lancer.lancerchap(_lastDir);
         else if(_canCatch)
         {
@@ -84,7 +84,7 @@ public class MovementScript : MonoBehaviour
 
         _isDashing = true;
         _canDash = false;
-        StartCoroutine(DoDash());
+        StartCoroutine(DoDash());   
     }
 
     IEnumerator DoDash()
