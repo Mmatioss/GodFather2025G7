@@ -19,7 +19,7 @@ public class RockController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -31,8 +31,14 @@ public class RockController : MonoBehaviour
                 _rb.linearVelocityX /= Mathf.Abs(_rb.linearVelocityX);
                 _rb.linearVelocityX *= 10;
             }
-                Destroy(gameObject);
-            }
-            
+            Destroy(gameObject);
         }
+        if (collision.gameObject.layer == LayerMask.NameToLayer("start"))
+        {
+            collision.transform.parent.GetComponent<lancer>()._CanLancer = true;
+            Destroy(gameObject);
+            collision.gameObject.SetActive(false);
+        }
+
     }
+}
