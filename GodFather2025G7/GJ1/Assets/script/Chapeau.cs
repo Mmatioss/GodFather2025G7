@@ -7,7 +7,7 @@ public class RockController : MonoBehaviour
     private CircleCollider2D _circleCollider;
     private Rigidbody2D _rb;
     public lancer lancer_player;
-    public LayerMask enemyMask;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,27 +19,26 @@ public class RockController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    IEnumerator SelfDestruct()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        yield return new WaitForSeconds(2);
-        Destroy(gameObject);
-    }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             if (Mathf.Abs(_rb.linearVelocityX) > 10)
             {
                 _rb.linearVelocityX /= Mathf.Abs(_rb.linearVelocityX);
                 _rb.linearVelocityX *= 10;
             }
-
-                StartCoroutine(SelfDestruct());
-            }
-            
+            Destroy(gameObject);
         }
+        if (collision.gameObject.layer == LayerMask.NameToLayer("start"))
+        {
+            collision.transform.parent.GetComponent<lancer>()._CanLancer = true;
+            Destroy(gameObject);
+            collision.gameObject.SetActive(false);
+        }
+
     }
+}
