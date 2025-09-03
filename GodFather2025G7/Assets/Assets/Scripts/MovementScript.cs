@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,37 +12,32 @@ public class MovementScript : MonoBehaviour
     [SerializeField] float _dashDuration = 1f;
     [SerializeField] float _coolDownDash = 2;
     private bool _isDashing = false;
-    private bool _canDash = false;
+    private bool _canDash = true;
 
 
 
     private Vector3 _lastDir = Vector3.right;
 
-
+    LineRenderer _linerenderer;
     void Start()
     {
+        _linerenderer = GetComponent<LineRenderer>();
     }
-
+    private void Update()
+    {
+        if (_isDashing) _linerenderer.SetPositions(new Vector3[2] { transform.position, transform.position + _lastDir * 2 });
+    }
     public void OnMovement(InputAction.CallbackContext c)
     {
-        if (_isDashing) return;
         if (!c.performed) return;
-
+        if (_isDashing) return;
 
         Vector2 dir = c.ReadValue<Vector2>();
-        if (IsSpeedNormalized) dir = dir.normalized;
-
         _lastDir = dir == Vector2.zero ? _lastDir : dir.normalized;
 
+        if (IsSpeedNormalized) dir = dir.normalized;
 
-        transform.GetChild(0).position = transform.position + _lastDir;
-        float theta = Mathf.Tan(_lastDir.y / _lastDir.x);
-
-        print(theta * Mathf.Rad2Deg);
-        transform.GetChild(0).LookAt(transform.position);
-        transform.GetChild(0).localEulerAngles = new Vector3(transform.GetChild(0).localEulerAngles.x,90, transform.GetChild(0).localEulerAngles.z);
-
-
+        _linerenderer.SetPositions(new Vector3[2] { transform.position + Vector3.forward, transform.position + _lastDir * 2 });
 
         transform.position += new Vector3(dir.x, dir.y) * (_playerSpeed * Time.deltaTime);
     }
@@ -57,7 +53,9 @@ public class MovementScript : MonoBehaviour
     public void OnDash(InputAction.CallbackContext c)
     {
         if (!c.performed) return;
-        if (_isDashing && _canDash) return;
+        if (_isDashing) return;
+        if (!_canDash) return;
+        print("4");
 
         _isDashing = true;
         _canDash = false;
@@ -69,7 +67,6 @@ public class MovementScript : MonoBehaviour
         float timeSinceStart = 0;
         while (timeSinceStart <= _dashDuration)
         {
-            print("isDashin'");
             timeSinceStart += Time.deltaTime;
 
             transform.position += _lastDir * (_dashPower * Time.deltaTime);
@@ -79,13 +76,7 @@ public class MovementScript : MonoBehaviour
 
         _isDashing = false;
         yield return new WaitForSeconds(_coolDownDash);
+        print("HAYEEEEEEEEEE");
         _canDash = true;
     }
-
-    private void OnDrawGizmos()
-    {
-        Debug.DrawLine(transform.position, transform.position + _lastDir);
-    }
-
-
 }
