@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    [SerializeField] private float _timeBetweenEvents = 30f;
     [SerializeField] private float _timeWheelSpin = 10f;
     [SerializeField] private float _wheelSpeed = 30f;
     [SerializeField] private float _wheelShowTime = 3f;
@@ -26,6 +25,7 @@ public class EventManager : MonoBehaviour
         public string name;
         public int probability;
         public GameObject eventObject;
+        public string message;
     }
     void Start()
     {
@@ -62,6 +62,7 @@ public class EventManager : MonoBehaviour
 
     public void StartWheel()
     {
+        this.gameObject.GetComponent<AudioSource>().Play();
         _eventUiMask.SetActive(true);
         _eventContainer.GetComponent<Rigidbody2D>().linearVelocityY += -_wheelSpeed;
         StartCoroutine(TimerEvent(_timeWheelSpin, TimerEventType.Start));
@@ -69,7 +70,15 @@ public class EventManager : MonoBehaviour
 
     void CallEvent(EventData eventData)
     {
-        eventData.eventObject.GetComponent<ParentEvent>().SendMessage("DoEvent");
+        if (eventData.message != "")
+        {
+            eventData.eventObject.GetComponent<ParentEvent>().SendMessage("DoEvent", eventData.message);
+            return;
+        }
+        else
+        {
+            eventData.eventObject.GetComponent<ParentEvent>().SendMessage("DoEvent");
+        }
     }
 
     EventData GetRandomEvent()
