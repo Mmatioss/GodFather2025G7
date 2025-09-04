@@ -42,7 +42,6 @@ public class MovementScript : MonoBehaviour
     }
     public void OnMovement(InputAction.CallbackContext c)
     {
-        if (!c.performed) return;
         if (_isDashing) return;
 
         Vector2 dir = c.ReadValue<Vector2>();
