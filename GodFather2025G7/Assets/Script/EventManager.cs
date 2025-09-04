@@ -37,7 +37,7 @@ public class EventManager : MonoBehaviour
     {
         if (_tryStop) // Try to stop the wheel
         {
-            if (_UIEventsTxt[2].transform.position.y - _eventUiMask.transform.position.y > -0.1f && _UIEventsTxt[2].transform.position.y - _eventUiMask.transform.position.y < 0.1f)
+            if (_UIEventsTxt[2].transform.position.y - _eventUiMask.transform.position.y > 300f && _UIEventsTxt[2].transform.position.y - _eventUiMask.transform.position.y < 320f)
             {
                 _eventContainer.GetComponent<Rigidbody2D>().linearVelocityY = 0f;
                 _tryStop = false;
@@ -46,7 +46,7 @@ public class EventManager : MonoBehaviour
             }
         }
 
-        if (_UIEventsTxt[4].transform.position.y - _eventUiMask.transform.position.y < -7f) // Recycle the text objects
+        if (_UIEventsTxt[4].transform.position.y - _eventUiMask.transform.position.y < -300f) // Recycle the text objects
         {
             EventData randomEvent = GetRandomEvent();
             _UIEventsTxt[4].GetComponentInChildren<TMPro.TextMeshProUGUI>().text = randomEvent.name;

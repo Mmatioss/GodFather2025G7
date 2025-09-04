@@ -8,12 +8,14 @@ public class Timer : MonoBehaviour
     [SerializeField] private float _timeZoneReduction = 30f;
     [SerializeField] private EventManager _eventManager;
     [SerializeField] private TextMeshProUGUI _timerText;
+    [SerializeField] private GameObject _gameOverPanel;
     private float _currentTime;
 
     void Start()
     {
         UpdateTimerText();
         StartCoroutine(TimerGame());
+        _gameOverPanel.SetActive(false);
     }
 
     void UpdateTimerText()
@@ -25,6 +27,12 @@ public class Timer : MonoBehaviour
         }
     }
 
+    void EndGame()
+    {
+        print("Game Over");
+        _gameOverPanel.SetActive(true);
+    }
+
 
     private IEnumerator TimerGame()
     {
@@ -33,7 +41,11 @@ public class Timer : MonoBehaviour
             yield return new WaitForSeconds(1f);
             _currentTime += 1f;
             UpdateTimerText();
-            if ((Mathf.FloorToInt((_timeLimit - _currentTime) % 60) == 0) || (Mathf.FloorToInt((_timeLimit - _currentTime) % 60) == 30))
+            if ($"{Mathf.FloorToInt((_timeLimit - _currentTime) / 60):00}:{Mathf.FloorToInt((_timeLimit - _currentTime) % 60):00}" == "00:00")
+            {
+                EndGame();
+            }
+            else if ((Mathf.FloorToInt((_timeLimit - _currentTime) % 60) == 0) || (Mathf.FloorToInt((_timeLimit - _currentTime) % 60) == 30))
             {
                 _eventManager.StartWheel();
             }
