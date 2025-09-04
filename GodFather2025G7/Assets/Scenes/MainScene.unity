@@ -2887,6 +2887,8 @@ MonoBehaviour:
   Sprites:
   - {fileID: 8665094655221374833, guid: 53be54cb92b277243aaff412ba2e7ca3, type: 3}
   - {fileID: -2667118734440619217, guid: 34568dcfbfea2884d9282a50e07b8834, type: 3}
+  - {fileID: 2093692603811528528, guid: 59129a5c72c5bff428909a511d653a2f, type: 3}
+  - {fileID: 395399472159650445, guid: ed62e97ef9a6a0a46b256a9fd1c80fb0, type: 3}
   toActivate:
   - {fileID: 722016079}
   chapal: {fileID: 3332173134495200549, guid: 6b92d11ca38874a4ba16b112488c78f2, type: 3}
