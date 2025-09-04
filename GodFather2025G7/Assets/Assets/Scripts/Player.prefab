@@ -254,6 +254,7 @@ Transform:
   - {fileID: 4458005189486959980}
   - {fileID: 1835720691274392329}
   - {fileID: 7511137739083698821}
+  - {fileID: 4593484879027059510}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6385513899533363092
@@ -362,9 +363,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viejoueur: 3
   vieMax: 3
-  coeurContainer: {fileID: 0}
-  coeurRouge: {fileID: 0}
-  coeurGris: {fileID: 0}
+  coeurContainer: {fileID: 4593484879027059510}
+  coeurRouge: {fileID: -454692577, guid: cfb282218814c0f409e53d405a2e0875, type: 3}
+  coeurGris: {fileID: 5413403170499304167, guid: cfb282218814c0f409e53d405a2e0875, type: 3}
 --- !u!114 &4334799042597916322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -689,3 +690,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &8307242798337171984
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4593484879027059510}
+  m_Layer: 0
+  m_Name: LifeBar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4593484879027059510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8307242798337171984}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6283697316838251463}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

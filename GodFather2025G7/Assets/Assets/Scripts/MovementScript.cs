@@ -113,4 +113,10 @@ public class MovementScript : MonoBehaviour
             p.StartGame();
         }
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("FightZone")) transform.position = Vector3.zero;
+    }
+
 }
