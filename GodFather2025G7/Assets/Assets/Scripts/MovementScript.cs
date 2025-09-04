@@ -103,7 +103,6 @@ public class MovementScript : MonoBehaviour
 
         _isDashing = false;
         yield return new WaitForSeconds(_coolDownDash);
-        print("HAYEEEEEEEEEE");
         _canDash = true;
     }
 
@@ -120,7 +119,6 @@ public class MovementScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("FightZone"))
         {
-            print("HYEYPUTE");
             transform.position = Vector3.zero;
         }
     }
