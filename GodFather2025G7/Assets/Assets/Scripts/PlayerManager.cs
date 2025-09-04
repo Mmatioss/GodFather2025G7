@@ -22,7 +22,7 @@ public class PlayerManager : MonoBehaviour
         }
 
         int i = 0;
-        foreach(MovementScript m in FindObjectsByType<MovementScript>(FindObjectsSortMode.None))
+        foreach(MovementScript m in FindObjectsByType<MovementScript>(FindObjectsSortMode.InstanceID))
         {
             m.GetComponent<SpriteRenderer>().sprite = Sprites[i++];
         }

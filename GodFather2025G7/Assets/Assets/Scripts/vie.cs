@@ -16,7 +16,7 @@ public class vie : MonoBehaviour
         {
             GameObject coeurObj = new GameObject("Coeur" + i);
             coeurObj.transform.SetParent(coeurContainer);
-            coeurObj.transform.localPosition = new Vector3(i * 0.8f, 0, 0); // espace les cœurs
+            coeurObj.transform.localPosition = new Vector3(i * 1.5f, 0, 0); // espace les cœurs
             SpriteRenderer sr = coeurObj.AddComponent<SpriteRenderer>();
             sr.sprite = coeurRouge;
             coeurs.Add(sr);
