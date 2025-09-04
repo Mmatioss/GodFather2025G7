@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6854999005360007913}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: vie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -348,6 +348,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viejoueur: 3
   vieMax: 3
-  coeurContainer: {fileID: 0}
+  coeurContainer: {fileID: 6854999005360007913}
   coeurRouge: {fileID: -454692577, guid: cfb282218814c0f409e53d405a2e0875, type: 3}
   coeurGris: {fileID: 5413403170499304167, guid: cfb282218814c0f409e53d405a2e0875, type: 3}
