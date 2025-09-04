@@ -28,17 +28,15 @@ public class PlayerManager : MonoBehaviour
     {
         NbOfPlayer++;
 
-        if(NbOfPlayer == 2 && !hasStart)
+        if (NbOfPlayer == 2 && !hasStart)
         {
             hasStart = true;
             textInfo.text = "Press Start !";
         }
 
-        players = FindObjectsByType<MovementScript>(FindObjectsSortMode.InstanceID);
-        for (int i = 0; i > players.Length-1; i--)
-        {
-            players[NbOfPlayer].GetComponent<SpriteRenderer>().sprite = Sprites[i];
-        }
+        players = FindObjectsByType<MovementScript>(FindObjectsSortMode.None);
+        players[NbOfPlayer-1].GetComponent<SpriteRenderer>().sprite = Sprites[NbOfPlayer-1];
+        print(players.Length);
 
     }
     public void StartGame()
@@ -46,7 +44,7 @@ public class PlayerManager : MonoBehaviour
         Instantiate(chapal);
         siffler.Play();
 
-        lamere.clip = musiqueToPlay;    
+        lamere.clip = musiqueToPlay;
         lamere.PlayDelayed(2);
 
         foreach (GameObject g in toActivate)
