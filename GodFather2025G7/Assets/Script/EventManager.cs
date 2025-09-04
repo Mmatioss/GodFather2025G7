@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    [SerializeField] private float _timeBetweenEvents = 30f;
     [SerializeField] private float _timeWheelSpin = 10f;
     [SerializeField] private float _wheelSpeed = 30f;
     [SerializeField] private float _wheelShowTime = 3f;
@@ -18,7 +17,6 @@ public class EventManager : MonoBehaviour
     private enum TimerEventType
     {
         Start,
-        Wait,
         Show
     }
     [System.Serializable]
@@ -27,27 +25,32 @@ public class EventManager : MonoBehaviour
         public string name;
         public int probability;
         public GameObject eventObject;
+        public string message;
     }
     void Start()
     {
         SetRandomListEvent();
-        GameEventLoop();
+        _eventUiMask.SetActive(false);
     }
 
     void Update()
     {
         if (_tryStop) // Try to stop the wheel
         {
-            if (_UIEventsTxt[2].transform.position.y - _eventUiMask.transform.position.y > -0.1f && _UIEventsTxt[2].transform.position.y - _eventUiMask.transform.position.y < 0.1f)
+            if (_UIEventsTxt[2].transform.position.y - _eventUiMask.transform.position.y > 0f && _UIEventsTxt[2].transform.position.y - _eventUiMask.transform.position.y < 320f)
             {
                 _eventContainer.GetComponent<Rigidbody2D>().linearVelocityY = 0f;
                 _tryStop = false;
                 CallEvent(SearchEventByName(_UIEventsTxt[2].GetComponentInChildren<TMPro.TextMeshProUGUI>().text));
                 StartCoroutine(TimerEvent(_wheelShowTime, TimerEventType.Show));
             }
+            else
+            {
+                print(_UIEventsTxt[2].transform.position.y - _eventUiMask.transform.position.y);
+            }
         }
 
-        if (_UIEventsTxt[4].transform.position.y - _eventUiMask.transform.position.y < -7f) // Recycle the text objects
+        if (_UIEventsTxt[4].transform.position.y - _eventUiMask.transform.position.y < -300f) // Recycle the text objects
         {
             EventData randomEvent = GetRandomEvent();
             _UIEventsTxt[4].GetComponentInChildren<TMPro.TextMeshProUGUI>().text = randomEvent.name;
@@ -61,21 +64,25 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    void GameEventLoop()
+    public void StartWheel()
     {
-        StartCoroutine(TimerEvent(_timeBetweenEvents, TimerEventType.Wait));
-        _eventUiMask.SetActive(false);
-    }
-
-    void StartWheel()
-    {
+        this.gameObject.GetComponent<AudioSource>().Play();
+        _eventUiMask.SetActive(true);
         _eventContainer.GetComponent<Rigidbody2D>().linearVelocityY += -_wheelSpeed;
         StartCoroutine(TimerEvent(_timeWheelSpin, TimerEventType.Start));
     }
 
     void CallEvent(EventData eventData)
     {
-        eventData.eventObject.GetComponent<ParentEvent>().SendMessage("DoEvent");
+        if (eventData.message != "")
+        {
+            eventData.eventObject.GetComponent<ParentEvent>().SendMessage("DoEvent", eventData.message);
+            return;
+        }
+        else
+        {
+            eventData.eventObject.GetComponent<ParentEvent>().SendMessage("DoEvent");
+        }
     }
 
     EventData GetRandomEvent()
@@ -115,13 +122,8 @@ public class EventManager : MonoBehaviour
             case TimerEventType.Start:
                 _tryStop = true;
                 break;
-            case TimerEventType.Wait:
-                _eventUiMask.SetActive(true);
-                StartWheel();
-                break;
             case TimerEventType.Show:
                 _eventUiMask.SetActive(false);
-                GameEventLoop();
                 break;
         }
     }
