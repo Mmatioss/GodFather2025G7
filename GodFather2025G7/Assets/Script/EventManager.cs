@@ -37,12 +37,16 @@ public class EventManager : MonoBehaviour
     {
         if (_tryStop) // Try to stop the wheel
         {
-            if (_UIEventsTxt[2].transform.position.y - _eventUiMask.transform.position.y > 300f && _UIEventsTxt[2].transform.position.y - _eventUiMask.transform.position.y < 320f)
+            if (_UIEventsTxt[2].transform.position.y - _eventUiMask.transform.position.y > 0f && _UIEventsTxt[2].transform.position.y - _eventUiMask.transform.position.y < 320f)
             {
                 _eventContainer.GetComponent<Rigidbody2D>().linearVelocityY = 0f;
                 _tryStop = false;
                 CallEvent(SearchEventByName(_UIEventsTxt[2].GetComponentInChildren<TMPro.TextMeshProUGUI>().text));
                 StartCoroutine(TimerEvent(_wheelShowTime, TimerEventType.Show));
+            }
+            else
+            {
+                print(_UIEventsTxt[2].transform.position.y - _eventUiMask.transform.position.y);
             }
         }
 
