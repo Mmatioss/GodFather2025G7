@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Chapeau : MonoBehaviour
@@ -32,27 +33,30 @@ public class Chapeau : MonoBehaviour
     }
     void pickUpChap(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("catchs")) return;
         _hasFallen = false;
         collision.transform.parent.GetComponent<lancer>()._canShoot = true;
         collision.transform.parent.GetComponent<lancer>()._chapInstantiate = gameObject;
         _rb.linearVelocity = Vector2.zero;
         _rb.constraints = RigidbodyConstraints2D.FreezeAll;
         collision.gameObject.SetActive(false);
+        print(collision.name);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (_rb.linearVelocity.magnitude > 1) OnContact();
+            if (_rb.linearVelocity.magnitude > 1) OnContact(collision);
             else pickUpChap(collision.collider);
         }
     }
 
-    void OnContact()
+    void OnContact(Collision2D collision)
     {
         if (!_hasFallen)
         {
+            collision.gameObject.GetComponent<vie>().takeDamage(1);
             _hasFallen = true;
             _rb.linearDamping = 10;
         }

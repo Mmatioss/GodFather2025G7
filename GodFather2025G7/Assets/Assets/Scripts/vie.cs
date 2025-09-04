@@ -18,13 +18,14 @@ public class vie : MonoBehaviour
             coeurObj.transform.SetParent(coeurContainer);
             coeurObj.transform.localPosition = new Vector3(i * 1.5f, 0, 0); // espace les cœurs
             SpriteRenderer sr = coeurObj.AddComponent<SpriteRenderer>();
+            sr.sortingOrder = 1000;
             sr.sprite = coeurRouge;
             coeurs.Add(sr);
         }
         updateVie();
     }
 
-    void takeDamage(int damage)
+    public void takeDamage(int damage)
     {
         viejoueur -= damage;
         viejoueur = Mathf.Clamp(viejoueur, 0, vieMax);
@@ -48,11 +49,4 @@ public class vie : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ballon"))
-        {
-            takeDamage(1);
-        }
-    }
 }

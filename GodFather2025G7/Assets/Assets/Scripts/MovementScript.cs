@@ -35,22 +35,25 @@ public class MovementScript : MonoBehaviour
         Catcher = GetComponentInChildren<BoxCollider2D>();
         Catcher.gameObject.SetActive(false);
     }
+
+    Vector2 moveDir = Vector2.zero;
     private void Update()
     {
         _linerenderer.SetPositions(new Vector3[2] { transform.position + Vector3.forward, transform.position + _lastDir * 2 });
+        _rb.linearVelocity = (new Vector3(moveDir.x, moveDir.y) * _playerSpeed);
 
     }
     public void OnMovement(InputAction.CallbackContext c)
     {
+        print("a");
         if (_isDashing) return;
 
         Vector2 dir = c.ReadValue<Vector2>();
         _lastDir = dir == Vector2.zero ? _lastDir : dir.normalized;
 
         if (IsSpeedNormalized) dir = dir.normalized;
+        moveDir = dir;
 
-
-        _rb.linearVelocity = (new Vector3(dir.x, dir.y) * _playerSpeed);
     }
 
     public void OnShoot(InputAction.CallbackContext c)
