@@ -9,8 +9,10 @@ public class Timer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _timerText;
     [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private GameObject _wall;
+    [SerializeField] private Camera _camera;
     private float _currentTime;
     private bool _isReduceWall = false;
+    private bool _isReduceCamera = false;
 
     void Start()
     {
@@ -52,6 +54,7 @@ public class Timer : MonoBehaviour
                 if ($"{Mathf.FloorToInt((_timeLimit - _currentTime) / 60):00}:{Mathf.FloorToInt((_timeLimit - _currentTime) % 60):00}" == "00:30")
                 {
                     _isReduceWall = true;
+                    _isReduceCamera = true;
                     print("Reduce Wall");
                 }
             }
@@ -63,10 +66,18 @@ public class Timer : MonoBehaviour
         float deltaTime = Time.deltaTime;
         if (_isReduceWall)
         {
-            _wall.transform.localScale = new Vector3(_wall.transform.localScale.x, _wall.transform.localScale.y - (0.034f * deltaTime), _wall.transform.localScale.z);
+            _wall.transform.localScale = new Vector3(_wall.transform.localScale.x - (0.034f * deltaTime), _wall.transform.localScale.y - (0.034f * deltaTime), _wall.transform.localScale.z);
             if (_wall.transform.localScale.y <= 0.5f)
             {
                 _isReduceWall = false;
+            }
+        }
+        if (_isReduceCamera)
+        {
+            _camera.fieldOfView -= 1.9f * deltaTime;
+            if (_camera.fieldOfView <= 30f)
+            {
+                _isReduceCamera = false;
             }
         }
     }
