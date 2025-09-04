@@ -886,6 +886,14 @@ MonoBehaviour:
     probability: 0
     eventObject: {fileID: 921150952}
     message: "Faire le tour de la salle \xE0 cloche pied"
+  - name: MILLLE CHAPOOO
+    probability: 100
+    eventObject: {fileID: 438623100}
+    message: 
+  - name: "Fr\xE9n\xE9sie"
+    probability: 1
+    eventObject: {fileID: 837941608}
+    message: 
   _UIEventsTxt:
   - {fileID: 525010780}
   - {fileID: 1171812029}
@@ -907,6 +915,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 722016080}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &438623100
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 438623101}
+  - component: {fileID: 438623102}
+  m_Layer: 0
+  m_Name: MillECHAPOOOO
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &438623101
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438623100}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1471686851}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &438623102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438623100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ba66d6f2cb8d14ba2616407843f737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 10
+  nbDeChapeu: 15
+  Chapeau: {fileID: 3332173134495200549, guid: 6b92d11ca38874a4ba16b112488c78f2, type: 3}
 --- !u!1 &442924137 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4306194216141748101, guid: 3fb1eab362bf93d4caf813c3bacbb56c, type: 3}
@@ -2058,7 +2113,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ba66d6f2cb8d14ba2616407843f737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reverseFrenesie: 7
+  time: 7
+  nbDeChapeu: 23
+  Chapeau: {fileID: 0}
 --- !u!1 &870508587
 GameObject:
   m_ObjectHideFlags: 0
@@ -2488,6 +2545,7 @@ MonoBehaviour:
   _timerText: {fileID: 1362477184}
   _gameOverPanel: {fileID: 297072562}
   _wall: {fileID: 0}
+  _camera: {fileID: 0}
 --- !u!4 &1022966983
 Transform:
   m_ObjectHideFlags: 0
@@ -3927,6 +3985,7 @@ Transform:
   - {fileID: 698591820}
   - {fileID: 921150954}
   - {fileID: 837941609}
+  - {fileID: 438623101}
   m_Father: {fileID: 722016080}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1485074362
@@ -4914,4 +4973,3 @@ SceneRoots:
   - {fileID: 312732232}
   - {fileID: 1068656114}
   - {fileID: 1129605766}
-  - {fileID: 863728457}
