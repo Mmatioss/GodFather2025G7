@@ -96,8 +96,8 @@ public class Timer : MonoBehaviour
         }
         if (_isReduceCamera)
         {
-            _camera.fieldOfView -= 0.95f * deltaTime;
-            if (_camera.fieldOfView <= 30f)
+            _camera.orthographicSize -= 0.085f * deltaTime;
+            if (_camera.orthographicSize <= 2.4f)
             {
                 _isReduceCamera = false;
             }
