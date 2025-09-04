@@ -4,70 +4,42 @@ using System.Collections;
 public class lancer : MonoBehaviour
 {
     public GameObject ChapPrefab;
+
+    public GameObject _chapInstantiate;
+
     public float LancerMax; //Puissance max du lancer
     public float ForceDistance;
-    public bool _CanLancer = false;
+    public bool _canShoot = false;
     public Collision2D _collision;
-    void Start()
-    {
 
-    }
+    public MovementScript _mov;
 
-    void Update()
+    private void Start()
     {
-        lancerchap();
+        _mov = GetComponent<MovementScript>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _CanLancer = true;
+        _canShoot = true;
     }
 
-    private void lancerchap()
+    public void lancerchap(Vector2 dir)
     {
-        if (_CanLancer)
+        if (_canShoot)
         {
-            // Pour la souris (clic droit)
-            bool lancerInput = Input.GetMouseButtonUp(1);
+            float spawnOffset = 1.5f;
+            Vector3 spawnPosition = transform.position + (Vector3)(dir * spawnOffset);
 
-            // Pour la manette (c'est A là)
-            lancerInput |= Input.GetButtonUp("Fire1");
-
-            if (lancerInput)
-            {
-                Vector2 direction;
-                float puissance;
-
-                // Si manette utilisée (prioritaire si joystick déplacé)
-                float h = Input.GetAxis("Horizontal");
-                float v = Input.GetAxis("Vertical");
-                Vector2 stickDir = new Vector2(h, v);
-
-                if (stickDir.magnitude > 0.1f)
-                {
-                    direction = stickDir.normalized;
-                    puissance = LancerMax;
-                }
-                else
-                {
-                    Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    cursorPosition.z = 0;
-                    direction = (cursorPosition - transform.position).normalized;
-                    float distance = Vector2.Distance(cursorPosition, transform.position);
-                    distance = Mathf.Min(distance, LancerMax);
-                    puissance = Mathf.Lerp(0, LancerMax, distance / ForceDistance);
-                }
-
-                // Offset devant le joueur
-                float spawnOffset = 1.5f; // Distance devant le joueur (ajuste selon besoin)
-                Vector3 spawnPosition = transform.position + (Vector3)(direction * spawnOffset);
-
-                Rigidbody2D rock = Instantiate(ChapPrefab, spawnPosition, Quaternion.identity).GetComponent<Rigidbody2D>();
-                rock.gameObject.GetComponent<RockController>().lancer_player = this;
-
-                rock.AddForce(direction * puissance, ForceMode2D.Impulse);
-                _CanLancer = false;
-            }
+            Rigidbody2D rock =_chapInstantiate.GetComponent<Rigidbody2D>();
+            rock.constraints = RigidbodyConstraints2D.None;
+            rock.linearDamping = 0f;
+            rock.AddForce(dir * ForceDistance, ForceMode2D.Impulse);
+            _canShoot = false;
+            _chapInstantiate = null;
         }
     }
-
+    private void Update()
+    {
+        if (_chapInstantiate) _chapInstantiate.transform.position = transform.position + _mov._lastDir;
+    }
 }

@@ -1,13 +1,14 @@
 using System.Collections;
 using UnityEngine;
 
-public class RockController : MonoBehaviour
+public class Chapeau : MonoBehaviour
 {
 
     private CircleCollider2D _circleCollider;
     private Rigidbody2D _rb;
     public lancer lancer_player;
 
+    public bool _hasFallen = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,21 +25,36 @@ public class RockController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Catch"))
         {
-            if (Mathf.Abs(_rb.linearVelocityX) > 10)
-            {
-                _rb.linearVelocityX /= Mathf.Abs(_rb.linearVelocityX);
-                _rb.linearVelocityX *= 10;
-            }
-            Destroy(gameObject);
+            pickUpChap(collision);
         }
-        if (collision.gameObject.layer == LayerMask.NameToLayer("start"))
-        {
-            collision.transform.parent.GetComponent<lancer>()._CanLancer = true;
-            Destroy(gameObject);
-            collision.gameObject.SetActive(false);
-        }
+    }
+    void pickUpChap(Collider2D collision)
+    {
+        _hasFallen = false;
+        collision.transform.parent.GetComponent<lancer>()._canShoot = true;
+        collision.transform.parent.GetComponent<lancer>()._chapInstantiate = gameObject;
+        _rb.linearVelocity = Vector2.zero;
+        _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        collision.gameObject.SetActive(false);
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
 
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (_rb.linearVelocity.magnitude > 1) OnContact();
+            else pickUpChap(collision.collider);
+        }
+    }
+
+    void OnContact()
+    {
+        if (!_hasFallen)
+        {
+            _hasFallen = true;
+            _rb.linearDamping = 10;
+        }
     }
 }
