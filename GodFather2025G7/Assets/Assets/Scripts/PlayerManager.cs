@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -10,27 +12,66 @@ public class PlayerManager : MonoBehaviour
 
     public List<Sprite> Sprites = new List<Sprite>();
 
+    public List<GameObject> toActivate = new();
+
     public GameObject chapal;
 
-    public void OnPlayerJoined()
-    {
-        NbOfPlayer++;
 
-        if(NbOfPlayer >= 2)
+    public AudioSource lamere;
+    public AudioClip musiqueToPlay;
+    public AudioSource siffler;
+
+
+
+    bool hasStart = false;
+
+    Dictionary<int, int> controllers = new();
+
+    public void OnPlayerJoined(PlayerInput playerInput)
+    {
+        int index = NbOfPlayer;
+        if (controllers.ContainsKey(playerInput.devices[0].deviceId))
+        {
+            index = controllers[playerInput.devices[0].deviceId];
+        }
+        else
+        {
+            controllers.Add(playerInput.devices[0].deviceId, NbOfPlayer);
+            NbOfPlayer++;
+        }
+
+
+        print(playerInput.devices[0].deviceId);
+
+        playerInput.GetComponent<SpriteRenderer>().sprite = Sprites[index];
+
+        
+
+        if (NbOfPlayer == 2 && !hasStart)
         {
             textInfo.text = "Press Start !";
         }
-
-        int i = 0;
-        foreach(MovementScript m in FindObjectsByType<MovementScript>(FindObjectsSortMode.None))
-        {
-            m.GetComponent<SpriteRenderer>().sprite = Sprites[i++];
-        }
-
     }
+
+    public void OnPlayerLeft(PlayerInput p)
+    {
+    }
+
     public void StartGame()
     {
+        if (hasStart) return;
+        hasStart = true;
         Instantiate(chapal);
+        siffler.Play();
+
+        lamere.clip = musiqueToPlay;
+        lamere.PlayDelayed(2);
+
+        foreach (GameObject g in toActivate)
+        {
+            g.SetActive(true);
+        }
+
         textInfo.text = "";
     }
     private void Update()

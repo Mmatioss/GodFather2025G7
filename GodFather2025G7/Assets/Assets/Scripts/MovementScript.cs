@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,7 +10,7 @@ public class MovementScript : MonoBehaviour
     [SerializeField] float _dashPower = 50f;
     [SerializeField] float _dashDuration = 1f;
     [SerializeField] float _coolDownDash = 2;
-    [Space(50),SerializeField] float TimeToCatch = 1;
+    [Space(50), SerializeField] float TimeToCatch = 1;
 
 
     private bool _isDashing = false;
@@ -35,23 +34,30 @@ public class MovementScript : MonoBehaviour
         Catcher = GetComponentInChildren<BoxCollider2D>();
         Catcher.gameObject.SetActive(false);
     }
+
+    Vector2 moveDir = Vector2.zero;
+    public bool reverseFrenesie;
     private void Update()
     {
         _linerenderer.SetPositions(new Vector3[2] { transform.position + Vector3.forward, transform.position + _lastDir * 2 });
+        if (reverseFrenesie)
+        {
+            moveDir = _lastDir * -1;
+        }
+        _rb.linearVelocity = (new Vector3(moveDir.x, moveDir.y) * _playerSpeed);
 
     }
     public void OnMovement(InputAction.CallbackContext c)
     {
-        if (!c.performed) return;
+        print("a");
         if (_isDashing) return;
 
         Vector2 dir = c.ReadValue<Vector2>();
         _lastDir = dir == Vector2.zero ? _lastDir : dir.normalized;
 
         if (IsSpeedNormalized) dir = dir.normalized;
+        moveDir = dir;
 
-
-        _rb.linearVelocity = (new Vector3(dir.x, dir.y) *_playerSpeed);
     }
 
     public void OnShoot(InputAction.CallbackContext c)
@@ -61,9 +67,8 @@ public class MovementScript : MonoBehaviour
         if (_isDashing) return;
 
 
-        if(_lancer._chapInstantiate)
-            _lancer.lancerchap(_lastDir);
-        else if(_canCatch)
+        if (_lancer._chapInstantiate) _lancer.lancerchap(_lastDir);
+        else if (_canCatch)
         {
             StartCoroutine(CatchTime());
         }
@@ -85,7 +90,7 @@ public class MovementScript : MonoBehaviour
 
         _isDashing = true;
         _canDash = false;
-        StartCoroutine(DoDash());   
+        StartCoroutine(DoDash());
     }
 
     IEnumerator DoDash()
@@ -102,7 +107,6 @@ public class MovementScript : MonoBehaviour
 
         _isDashing = false;
         yield return new WaitForSeconds(_coolDownDash);
-        print("HAYEEEEEEEEEE");
         _canDash = true;
     }
 
@@ -114,4 +118,13 @@ public class MovementScript : MonoBehaviour
             p.StartGame();
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("FightZone"))
+        {
+            transform.position = Vector3.zero;
+        }
+    }
+
 }
