@@ -707,7 +707,7 @@ MonoBehaviour:
   _eventContainer: {fileID: 789091396}
   _gameObjectEvents:
   - name: Squeezie
-    probability: 1
+    probability: 0
     eventObject: {fileID: 698591819}
     message: 
   - name: Squat
@@ -971,6 +971,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lancerScript: {fileID: 2422918897723126273, guid: 710c61a31f74ffe4eb253d416d7aa92b, type: 3}
+  chapeauObject: {fileID: 3332173134495200549, guid: 6b92d11ca38874a4ba16b112488c78f2, type: 3}
 --- !u!1 &589921287
 GameObject:
   m_ObjectHideFlags: 0
