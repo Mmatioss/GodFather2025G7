@@ -48,17 +48,7 @@ public class Timer : MonoBehaviour
             else if ((Mathf.FloorToInt((_timeLimit - _currentTime) % 60) == 0) || (Mathf.FloorToInt((_timeLimit - _currentTime) % 60) == 30))
             {
                 _eventManager.StartWheel();
-                if ($"{Mathf.FloorToInt((_timeLimit - _currentTime) / 60):00}:{Mathf.FloorToInt((_timeLimit - _currentTime) % 60):00}" == "00:30")
-                {
-                    ReduceWall();
-                }
             }
         }
-    }
-    
-    void ReduceWall()
-    {
-        print("Wall is moving");
-        _wall.GetComponent<Animation>().Play();
     }
 }
