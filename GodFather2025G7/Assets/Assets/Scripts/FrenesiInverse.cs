@@ -1,16 +1,33 @@
+using System.Collections;
 using UnityEngine;
 
-public class FrenesiInverse : MonoBehaviour
+public class FrenesiInverse : ParentEvent
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public float reverseFrenesie = 7f;
+    public void DoEvent()
     {
-        
+        var players = FindObjectsByType<MovementScript>(FindObjectsSortMode.None);
+
+        foreach(MovementScript p in players)
+        {
+            p.reverseFrenesie = true;
+        }
+
+
+        StartCoroutine(endEvent());
+
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator endEvent()
     {
-        
+        yield return new WaitForSeconds(reverseFrenesie);
+
+        var players = FindObjectsByType<MovementScript>(FindObjectsSortMode.None);
+
+        foreach (MovementScript p in players)
+        {
+            p.reverseFrenesie = false;
+        }
     }
+
 }

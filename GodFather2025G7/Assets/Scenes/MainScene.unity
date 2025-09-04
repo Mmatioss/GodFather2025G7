@@ -2023,6 +2023,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 837941609}
+  - component: {fileID: 837941610}
   m_Layer: 0
   m_Name: FrenesieInverse
   m_TagString: Untagged
@@ -2045,6 +2046,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1471686851}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &837941610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837941608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ba66d6f2cb8d14ba2616407843f737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reverseFrenesie: 7
 --- !u!1 &870508587
 GameObject:
   m_ObjectHideFlags: 0
@@ -2561,7 +2575,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.578
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
