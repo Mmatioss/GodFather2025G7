@@ -831,7 +831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wall: {fileID: 149047081}
-  _timeEnable: 5
+  _timeEnable: 10
 --- !u!1 &339549799
 GameObject:
   m_ObjectHideFlags: 0
@@ -876,7 +876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22891ed2a5d220344975531b4a50427e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeLimit: 31
+  _timeLimit: 61
   _eventManager: {fileID: 930785328}
   _timerText: {fileID: 891916309}
   _gameOverPanel: {fileID: 1634302503}
