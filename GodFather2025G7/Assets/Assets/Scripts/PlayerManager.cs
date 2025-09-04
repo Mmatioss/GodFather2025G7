@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -23,24 +25,42 @@ public class PlayerManager : MonoBehaviour
 
     bool hasStart = false;
 
-    MovementScript[] players = new MovementScript[4];
-    public void OnPlayerJoined()
+    Dictionary<int, int> controllers = new();
+
+    public void OnPlayerJoined(PlayerInput playerInput)
     {
-        NbOfPlayer++;
+        int index = NbOfPlayer;
+        if (controllers.ContainsKey(playerInput.devices[0].deviceId))
+        {
+            index = controllers[playerInput.devices[0].deviceId];
+        }
+        else
+        {
+            controllers.Add(playerInput.devices[0].deviceId, NbOfPlayer);
+            NbOfPlayer++;
+        }
+
+
+        print(playerInput.devices[0].deviceId);
+
+        playerInput.GetComponent<SpriteRenderer>().sprite = Sprites[index];
+
+        
 
         if (NbOfPlayer == 2 && !hasStart)
         {
-            hasStart = true;
             textInfo.text = "Press Start !";
         }
-
-        players = FindObjectsByType<MovementScript>(FindObjectsSortMode.None);
-        players[NbOfPlayer-1].GetComponent<SpriteRenderer>().sprite = Sprites[NbOfPlayer-1];
-        print(players.Length);
-
     }
+
+    public void OnPlayerLeft(PlayerInput p)
+    {
+    }
+
     public void StartGame()
     {
+        if (hasStart) return;
+        hasStart = true;
         Instantiate(chapal);
         siffler.Play();
 

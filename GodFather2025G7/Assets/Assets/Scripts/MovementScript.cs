@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -37,9 +36,14 @@ public class MovementScript : MonoBehaviour
     }
 
     Vector2 moveDir = Vector2.zero;
+    public bool reverseFrenesie;
     private void Update()
     {
         _linerenderer.SetPositions(new Vector3[2] { transform.position + Vector3.forward, transform.position + _lastDir * 2 });
+        if (reverseFrenesie)
+        {
+            moveDir = _lastDir * -1;
+        }
         _rb.linearVelocity = (new Vector3(moveDir.x, moveDir.y) * _playerSpeed);
 
     }

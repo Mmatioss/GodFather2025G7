@@ -57,6 +57,17 @@
                 },
                 {
                     "name": "",
+                    "id": "768acf9c-3458-477c-bda6-af7a29f0aaee",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a74c69c3-92a8-49b9-a638-31b4ffaaed0f",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
