@@ -9,19 +9,24 @@ public class Chapeau : MonoBehaviour
     private Rigidbody2D _rb;
     public lancer lancer_player;
 
-    public bool _hasFallen = false;
+    public bool _hasFallen = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _circleCollider = GetComponent<CircleCollider2D>();
         _rb = GetComponent<Rigidbody2D>();
+        _hasFallen = true;
+    }
+    private void OnEnable()
+    {
+        _hasFallen = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (Vector3.Distance(Vector3.zero, transform.position) > 10) transform.position = Vector3.zero;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
