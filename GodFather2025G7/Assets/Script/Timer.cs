@@ -5,10 +5,10 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     [SerializeField] private float _timeLimit = 240f;
-    [SerializeField] private float _timeZoneReduction = 30f;
     [SerializeField] private EventManager _eventManager;
     [SerializeField] private TextMeshProUGUI _timerText;
     [SerializeField] private GameObject _gameOverPanel;
+    [SerializeField] private GameObject _wall;
     private float _currentTime;
 
     void Start()
@@ -48,7 +48,17 @@ public class Timer : MonoBehaviour
             else if ((Mathf.FloorToInt((_timeLimit - _currentTime) % 60) == 0) || (Mathf.FloorToInt((_timeLimit - _currentTime) % 60) == 30))
             {
                 _eventManager.StartWheel();
+                if ($"{Mathf.FloorToInt((_timeLimit - _currentTime) / 60):00}:{Mathf.FloorToInt((_timeLimit - _currentTime) % 60):00}" == "00:30")
+                {
+                    ReduceWall();
+                }
             }
         }
+    }
+    
+    void ReduceWall()
+    {
+        print("Wall is moving");
+        _wall.GetComponent<Animation>().Play();
     }
 }
