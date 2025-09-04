@@ -51,7 +51,7 @@ public class Timer : MonoBehaviour
             else if ((Mathf.FloorToInt((_timeLimit - _currentTime) % 60) == 0) || (Mathf.FloorToInt((_timeLimit - _currentTime) % 60) == 30))
             {
                 _eventManager.StartWheel();
-                if ($"{Mathf.FloorToInt((_timeLimit - _currentTime) / 60):00}:{Mathf.FloorToInt((_timeLimit - _currentTime) % 60):00}" == "00:30")
+                if ($"{Mathf.FloorToInt((_timeLimit - _currentTime) / 60):00}:{Mathf.FloorToInt((_timeLimit - _currentTime) % 60):00}" == "01:00")
                 {
                     _isReduceWall = true;
                     _isReduceCamera = true;
@@ -66,7 +66,7 @@ public class Timer : MonoBehaviour
         float deltaTime = Time.deltaTime;
         if (_isReduceWall)
         {
-            _wall.transform.localScale = new Vector3(_wall.transform.localScale.x - (0.034f * deltaTime), _wall.transform.localScale.y - (0.034f * deltaTime), _wall.transform.localScale.z);
+            _wall.transform.localScale = new Vector3(_wall.transform.localScale.x - (0.017f * deltaTime), _wall.transform.localScale.y - (0.017f * deltaTime), _wall.transform.localScale.z);
             if (_wall.transform.localScale.y <= 0.5f)
             {
                 _isReduceWall = false;
@@ -74,7 +74,7 @@ public class Timer : MonoBehaviour
         }
         if (_isReduceCamera)
         {
-            _camera.fieldOfView -= 1.9f * deltaTime;
+            _camera.fieldOfView -= 0.95f * deltaTime;
             if (_camera.fieldOfView <= 30f)
             {
                 _isReduceCamera = false;
