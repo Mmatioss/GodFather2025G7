@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 public class Timer : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Timer : MonoBehaviour
     [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private GameObject _wall;
     [SerializeField] private Camera _camera;
+    [SerializeField] private List<GameObject> __wallProtection = new List<GameObject>();
     private float _currentTime;
     private bool _isReduceWall = false;
     private bool _isReduceCamera = false;
@@ -67,6 +69,10 @@ public class Timer : MonoBehaviour
         if (_isReduceWall)
         {
             _wall.transform.localScale = new Vector3(_wall.transform.localScale.x - (0.017f * deltaTime), _wall.transform.localScale.y - (0.017f * deltaTime), _wall.transform.localScale.z);
+            for (int i = 0; i < __wallProtection.Count; i++)
+            {
+                __wallProtection[i].transform.localScale = new Vector3(__wallProtection[i].transform.localScale.x - (0.03f * deltaTime), __wallProtection[i].transform.localScale.y - (0.03f * deltaTime), __wallProtection[i].transform.localScale.z);
+            }
             if (_wall.transform.localScale.y <= 0.5f)
             {
                 _isReduceWall = false;
