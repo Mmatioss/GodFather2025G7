@@ -10,6 +10,7 @@ public class Timer : MonoBehaviour
     [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private GameObject _wall;
     private float _currentTime;
+    private bool _isReduceWall = false;
 
     void Start()
     {
@@ -48,6 +49,24 @@ public class Timer : MonoBehaviour
             else if ((Mathf.FloorToInt((_timeLimit - _currentTime) % 60) == 0) || (Mathf.FloorToInt((_timeLimit - _currentTime) % 60) == 30))
             {
                 _eventManager.StartWheel();
+                if ($"{Mathf.FloorToInt((_timeLimit - _currentTime) / 60):00}:{Mathf.FloorToInt((_timeLimit - _currentTime) % 60):00}" == "00:30")
+                {
+                    _isReduceWall = true;
+                    print("Reduce Wall");
+                }
+            }
+        }
+    }
+
+    void Update()
+    {
+        float deltaTime = Time.deltaTime;
+        if (_isReduceWall)
+        {
+            _wall.transform.localScale = new Vector3(_wall.transform.localScale.x, _wall.transform.localScale.y - (0.034f * deltaTime), _wall.transform.localScale.z);
+            if (_wall.transform.localScale.y <= 0.5f)
+            {
+                _isReduceWall = false;
             }
         }
     }
