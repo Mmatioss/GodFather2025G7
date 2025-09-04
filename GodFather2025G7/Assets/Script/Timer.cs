@@ -5,10 +5,10 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     [SerializeField] private float _timeLimit = 240f;
-    [SerializeField] private float _timeZoneReduction = 30f;
     [SerializeField] private EventManager _eventManager;
     [SerializeField] private TextMeshProUGUI _timerText;
     [SerializeField] private GameObject _gameOverPanel;
+    [SerializeField] private GameObject _wall;
     private float _currentTime;
 
     void Start()
