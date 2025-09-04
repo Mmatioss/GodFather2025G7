@@ -322,7 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcdf2a0688d0bb347ba906ee33822921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChapPrefab: {fileID: 4457779710423503523, guid: acdfc4ebebbe7044abb5e9090828c5ac, type: 3}
+  ChapPrefab: {fileID: 3332173134495200549, guid: 6b92d11ca38874a4ba16b112488c78f2, type: 3}
   _chapInstantiate: {fileID: 0}
   LancerMax: 20
   ForceDistance: 50
