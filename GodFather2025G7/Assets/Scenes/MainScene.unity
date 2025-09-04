@@ -871,7 +871,7 @@ MonoBehaviour:
     eventObject: {fileID: 698591819}
     message: 
   - name: Squat
-    probability: 1
+    probability: 0
     eventObject: {fileID: 921150952}
     message: Effectuer 4 squats
   - name: CulSec
@@ -879,11 +879,11 @@ MonoBehaviour:
     eventObject: {fileID: 921150952}
     message: CulSec le verre d'eau
   - name: Chapeau
-    probability: 1
+    probability: 0
     eventObject: {fileID: 921150952}
     message: mettre un chapeau
   - name: Course
-    probability: 1
+    probability: 0
     eventObject: {fileID: 921150952}
     message: "Faire le tour de la salle \xE0 cloche pied"
   _UIEventsTxt:
