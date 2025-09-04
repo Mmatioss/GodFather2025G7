@@ -34,7 +34,28 @@ public class event_speed : ParentEvent
     }
 
     public void DoEvent()
+{
+    var players = FindObjectsByType<lancer>(FindObjectsSortMode.None);
+
+    foreach(lancer p in players)
     {
+        lancerScript = p;
+        if (lancerScript != null)
+        {
+            _originalSpeed = lancerScript.ForceDistance;
+            speed();
+        }
+        else
+        {
+            Debug.LogError("lancerScript n'est pas assigné dans event_speed");
+        }
+    }
+
+}
+    
+    public void speed()
+    {
+
         int bonus = Random.Range(50, 100);
         lancerScript.ForceDistance += bonus;
         Debug.Log("Event Speed! Bonus: " + bonus + " | Nouveau lance_max: " + lancerScript.ForceDistance);
