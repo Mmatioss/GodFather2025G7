@@ -11,7 +11,10 @@ public class Timer : MonoBehaviour
     [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private GameObject _wall;
     [SerializeField] private Camera _camera;
-    [SerializeField] private List<GameObject> __wallProtection = new List<GameObject>();
+    [SerializeField] private List<GameObject> _wallProtection = new List<GameObject>();
+    [SerializeField] private List<Vector3> _spawnPointBallons = new List<Vector3>();
+    [SerializeField] private GameObject _goodBallonPrefab;
+    [SerializeField] private GameObject _badBallonPrefab;
     private float _currentTime;
     private bool _isReduceWall = false;
     private bool _isReduceCamera = false;
@@ -53,6 +56,7 @@ public class Timer : MonoBehaviour
             else if ((Mathf.FloorToInt((_timeLimit - _currentTime) % 60) == 0) || (Mathf.FloorToInt((_timeLimit - _currentTime) % 60) == 30))
             {
                 _eventManager.StartWheel();
+                SpawnBallon();
                 if ($"{Mathf.FloorToInt((_timeLimit - _currentTime) / 60):00}:{Mathf.FloorToInt((_timeLimit - _currentTime) % 60):00}" == "01:00")
                 {
                     _isReduceWall = true;
@@ -63,15 +67,27 @@ public class Timer : MonoBehaviour
         }
     }
 
+    void SpawnBallon()
+    {
+        int randomNbx = Random.Range((int)_spawnPointBallons[0].x, (int)_spawnPointBallons[1].x);
+        int randomNby = Random.Range((int)_spawnPointBallons[0].y, (int)_spawnPointBallons[1].y);
+        Vector3 spawnPosition = new Vector3(randomNbx, randomNby, 0);
+        if (Random.Range(0, 2) == 0)
+            Instantiate(_goodBallonPrefab, spawnPosition, Quaternion.identity);
+        else
+        Instantiate(_badBallonPrefab, spawnPosition, Quaternion.identity);
+    
+    }
+
     void Update()
     {
         float deltaTime = Time.deltaTime;
         if (_isReduceWall)
         {
             _wall.transform.localScale = new Vector3(_wall.transform.localScale.x - (0.017f * deltaTime), _wall.transform.localScale.y - (0.017f * deltaTime), _wall.transform.localScale.z);
-            for (int i = 0; i < __wallProtection.Count; i++)
+            for (int i = 0; i < _wallProtection.Count; i++)
             {
-                __wallProtection[i].transform.localScale = new Vector3(__wallProtection[i].transform.localScale.x - (0.03f * deltaTime), __wallProtection[i].transform.localScale.y - (0.03f * deltaTime), __wallProtection[i].transform.localScale.z);
+                _wallProtection[i].transform.localScale = new Vector3(_wallProtection[i].transform.localScale.x - (0.03f * deltaTime), _wallProtection[i].transform.localScale.y - (0.03f * deltaTime), _wallProtection[i].transform.localScale.z);
             }
             if (_wall.transform.localScale.y <= 0.5f)
             {
