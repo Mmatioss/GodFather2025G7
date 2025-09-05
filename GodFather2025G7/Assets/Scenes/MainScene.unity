@@ -797,7 +797,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &297072563
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1084,7 +1084,7 @@ MonoBehaviour:
   _eventContainer: {fileID: 789091396}
   _gameObjectEvents:
   - name: Squeezie
-    probability: 0
+    probability: 1
     eventObject: {fileID: 698591819}
     message: 
   - name: Squat
@@ -1104,9 +1104,9 @@ MonoBehaviour:
     eventObject: {fileID: 921150952}
     message: "Faire le tour de la salle \xE0 cloche pied"
   - name: Speed
-    probability: 10
+    probability: 1
     eventObject: {fileID: 580398357}
-    message: Augmente la vitesse du chapeau entre 50 et 100
+    message: 
   - name: MILLLE CHAPOOO
     probability: 1
     eventObject: {fileID: 438623100}
@@ -1234,10 +1234,10 @@ RectTransform:
   - {fileID: 1838729682}
   m_Father: {fileID: 297072563}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 61}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -0.83000183, y: 25}
+  m_SizeDelta: {x: 105.06, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &477867753
 MonoBehaviour:
@@ -1977,7 +1977,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &722016080
 Transform:
   m_ObjectHideFlags: 0
@@ -2399,6 +2399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reverseFrenesie: 15
+  rendererFeature: {fileID: -5877886696838560004, guid: 424799608f7334c24bf367e4bbfa7f9a, type: 2}
 --- !u!1 &870508587
 GameObject:
   m_ObjectHideFlags: 0
@@ -2838,7 +2839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22891ed2a5d220344975531b4a50427e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeLimit: 211
+  _timeLimit: 180
   _eventManager: {fileID: 416906571}
   _timerText: {fileID: 1362477184}
   _gameOverPanel: {fileID: 297072562}
@@ -5472,6 +5473,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2059387785}
   m_CullTransparentMesh: 1
+--- !u!1 &2065717963
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2065717965}
+  - component: {fileID: 2065717964}
+  m_Layer: 0
+  m_Name: Compteru
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2065717964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065717963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35bbe29ef5caec4e86be9ce370ed29e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1838729683}
+--- !u!4 &2065717965
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065717963}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.005220413, y: 0.52210045, z: 0.43403974}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -5486,3 +5532,4 @@ SceneRoots:
   - {fileID: 312732232}
   - {fileID: 1068656114}
   - {fileID: 1129605766}
+  - {fileID: 2065717965}

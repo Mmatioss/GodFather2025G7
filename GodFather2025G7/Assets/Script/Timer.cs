@@ -39,6 +39,7 @@ public class Timer : MonoBehaviour
     {
         print("Game Over");
         _gameOverPanel.SetActive(true);
+        Compteur.instance.Scores();
     }
 
 

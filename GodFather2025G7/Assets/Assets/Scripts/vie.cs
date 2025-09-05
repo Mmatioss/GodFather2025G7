@@ -27,7 +27,7 @@ public class vie : MonoBehaviour
         _cameraShake = GameObject.FindWithTag("MainCamera");
     }
 
-    public void takeDamage(int damage)
+    public bool takeDamage(int damage)
     {
         viejoueur -= damage;
         viejoueur = Mathf.Clamp(viejoueur, 0, vieMax);
@@ -37,6 +37,8 @@ public class vie : MonoBehaviour
         {
             jesuisMouru();
         }
+
+        return viejoueur <= 0;
     }
 
     void updateVie()
