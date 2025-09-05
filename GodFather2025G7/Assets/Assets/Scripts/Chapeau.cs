@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Chapeau : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class Chapeau : MonoBehaviour
     public lancer lancer_player;
 
     public bool _hasFallen = true;
+
+    public GameObject _hit;
+
     private GameObject _player;
     public GameObject Player { get => _player; set => _player = value; }
 
@@ -64,7 +68,19 @@ public class Chapeau : MonoBehaviour
     {
         if (!_hasFallen)
         {
-            collision.gameObject.GetComponent<vie>().takeDamage(1);
+            var mov = Player.GetComponent<MovementScript>();
+            if (collision.gameObject.GetComponent<vie>().takeDamage(1))
+            {
+                if (Compteur.instance.controllers.ContainsKey(mov.PlayerID))
+                {
+                    Compteur.instance.controllers[mov.PlayerID]++;
+                }
+                else
+                {
+                    Compteur.instance.controllers.Add(mov.PlayerID, 1);
+                }
+            }
+            Instantiate(_hit, transform.position, Quaternion.identity);
             _hasFallen = true;
             _rb.linearDamping = 10;
         }

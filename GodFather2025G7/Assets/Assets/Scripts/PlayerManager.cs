@@ -37,15 +37,18 @@ public class PlayerManager : MonoBehaviour
         else
         {
             controllers.Add(playerInput.devices[0].deviceId, NbOfPlayer);
+            playerInput.GetComponent<MovementScript>().PlayerID = NbOfPlayer;
             NbOfPlayer++;
         }
 
 
+
         print(playerInput.devices[0].deviceId);
+
 
         playerInput.GetComponent<SpriteRenderer>().sprite = Sprites[index];
 
-        
+
 
         if (NbOfPlayer == 2 && !hasStart)
         {
