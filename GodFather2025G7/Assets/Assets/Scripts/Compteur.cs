@@ -1,7 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Compteur : MonoBehaviour
 {
@@ -25,6 +28,17 @@ public class Compteur : MonoBehaviour
 
 
         text.text = "Player " + maxKey + " win! Score : " + controllers[maxKey];
+
+        StartCoroutine(caca());
     }
+
+
+    IEnumerator caca()
+    {
+        yield return new WaitForSeconds(7.897657482f);
+
+        SceneManager.LoadScene(0);
+    }
+
 
 }
