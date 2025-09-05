@@ -13,6 +13,8 @@ public class MovementScript : MonoBehaviour
     [Space(50), SerializeField] float TimeToCatch = 1;
 
 
+    public int PlayerID = 0;
+
     private bool _isDashing = false;
     private bool _canDash = true;
     private bool _canCatch = true;
