@@ -10,6 +10,8 @@ public class Chapeau : MonoBehaviour
     public lancer lancer_player;
 
     public bool _hasFallen = true;
+    private GameObject _player;
+    public GameObject Player { get => _player; set => _player = value; }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -45,6 +47,7 @@ public class Chapeau : MonoBehaviour
         _rb.linearVelocity = Vector2.zero;
         _rb.constraints = RigidbodyConstraints2D.FreezeAll;
         collision.gameObject.SetActive(false);
+        _player = null;
         print(collision.name);
     }
     private void OnCollisionEnter2D(Collision2D collision)

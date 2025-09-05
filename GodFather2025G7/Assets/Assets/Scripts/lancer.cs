@@ -34,6 +34,7 @@ public class lancer : MonoBehaviour
             rock.constraints = RigidbodyConstraints2D.None;
             rock.linearDamping = 0f;
             rock.AddForce(dir * ForceDistance, ForceMode2D.Impulse);
+            rock.GetComponent<Chapeau>().Player = this.gameObject;
             _canShoot = false;
             _chapInstantiate = null;
         }

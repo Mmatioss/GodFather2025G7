@@ -4,11 +4,11 @@ public class BadBallon : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D collision)
     {
-        GameObject player = collision.gameObject;
-        if (player.transform.parent.tag == "Player")
+        GameObject chapeau = collision.gameObject;
+        if (chapeau.transform.tag == "Chapeau")
         {
             Debug.Log("Ballon collected!");
-            player.GetComponentInParent<vie>().takeDamage(1);
+            chapeau.GetComponent<Chapeau>().Player.GetComponentInParent<vie>().takeDamage(1);
             Destroy(gameObject);
         }
     }
