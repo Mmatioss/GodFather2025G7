@@ -9,6 +9,7 @@ public class vie : MonoBehaviour
     public Sprite coeurRouge;
     public Sprite coeurGris;
     private List<SpriteRenderer> coeurs = new List<SpriteRenderer>();
+    private GameObject _cameraShake;
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class vie : MonoBehaviour
             coeurs.Add(sr);
         }
         updateVie();
+        _cameraShake = GameObject.FindWithTag("MainCamera");
     }
 
     public void takeDamage(int damage)
@@ -30,6 +32,7 @@ public class vie : MonoBehaviour
         viejoueur -= damage;
         viejoueur = Mathf.Clamp(viejoueur, 0, vieMax);
         updateVie();
+        _cameraShake.GetComponent<CameraShake>().Shake = 0.3f;
         if (viejoueur <= 0)
         {
             jesuisMouru();
