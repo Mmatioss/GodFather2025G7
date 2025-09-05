@@ -59,7 +59,6 @@ public class Timer : MonoBehaviour
             }
             else if ((Mathf.FloorToInt((_timeLimit - _currentTime) % 60) == 0) || (Mathf.FloorToInt((_timeLimit - _currentTime) % 60) == 30))
             {
-                _eventManager.StartWheel();
                 SpawnBallon();
                 if ($"{Mathf.FloorToInt((_timeLimit - _currentTime) / 60):00}:{Mathf.FloorToInt((_timeLimit - _currentTime) % 60):00}" == "01:00")
                 {
@@ -67,6 +66,10 @@ public class Timer : MonoBehaviour
                     _isReduceCamera = true;
                     print("Reduce Wall");
                 }
+            }
+            if (_currentTime % 20 == 0)
+            {
+                _eventManager.StartWheel();
             }
         }
     }
