@@ -2985,7 +2985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22891ed2a5d220344975531b4a50427e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeLimit: 45
+  _timeLimit: 180
   _eventManager: {fileID: 416906571}
   _timerText: {fileID: 1362477184}
   _gameOverPanel: {fileID: 297072562}
