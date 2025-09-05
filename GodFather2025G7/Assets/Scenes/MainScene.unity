@@ -1084,7 +1084,7 @@ MonoBehaviour:
   _eventContainer: {fileID: 789091396}
   _gameObjectEvents:
   - name: Squeezie
-    probability: 1
+    probability: 0
     eventObject: {fileID: 698591819}
     message: 
   - name: Squat
@@ -1103,6 +1103,10 @@ MonoBehaviour:
     probability: 0
     eventObject: {fileID: 921150952}
     message: "Faire le tour de la salle \xE0 cloche pied"
+  - name: Speed
+    probability: 1
+    eventObject: {fileID: 580398357}
+    message: Augmente la vitesse du chapeau entre 50 et 100
   - name: MILLLE CHAPOOO
     probability: 1
     eventObject: {fileID: 438623100}
@@ -1416,6 +1420,52 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &580398357
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 580398358}
+  - component: {fileID: 580398359}
+  m_Layer: 0
+  m_Name: EventSpeed
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &580398358
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580398357}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1471686851}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &580398359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580398357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca2b3206170ba304e83777f169a09378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lancerScript: {fileID: 2422918897723126273, guid: 710c61a31f74ffe4eb253d416d7aa92b, type: 3}
+  chapeauObject: {fileID: 3332173134495200549, guid: 6b92d11ca38874a4ba16b112488c78f2, type: 3}
 --- !u!1 &589921287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1474,7 +1524,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 7404588604615989143, guid: 7ee94a85641c8524dbc81652915caaee, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4249,6 +4299,7 @@ Transform:
   - {fileID: 438623101}
   - {fileID: 1473027615}
   - {fileID: 1901908820}
+  - {fileID: 580398358}
   m_Father: {fileID: 722016080}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1473027614
