@@ -1084,7 +1084,7 @@ MonoBehaviour:
   _eventContainer: {fileID: 789091396}
   _gameObjectEvents:
   - name: Squeezie
-    probability: 0
+    probability: 1
     eventObject: {fileID: 698591819}
     message: 
   - name: Squat
@@ -1092,7 +1092,7 @@ MonoBehaviour:
     eventObject: {fileID: 921150952}
     message: Effectuer 4 squats
   - name: CulSec
-    probability: 0
+    probability: 1
     eventObject: {fileID: 921150952}
     message: CulSec le verre d'eau
   - name: Chapeau
@@ -1104,15 +1104,15 @@ MonoBehaviour:
     eventObject: {fileID: 921150952}
     message: "Faire le tour de la salle \xE0 cloche pied"
   - name: MILLLE CHAPOOO
-    probability: 0
+    probability: 1
     eventObject: {fileID: 438623100}
     message: 
   - name: "Fr\xE9n\xE9sie"
-    probability: 0
+    probability: 1
     eventObject: {fileID: 837941608}
     message: 
   - name: Wall
-    probability: 0
+    probability: 1
     eventObject: {fileID: 1473027614}
     message: 
   - name: Mickey
@@ -1927,7 +1927,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &722016080
 Transform:
   m_ObjectHideFlags: 0

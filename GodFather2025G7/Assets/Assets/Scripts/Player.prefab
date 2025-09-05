@@ -267,7 +267,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.2
+  m_Radius: 0.7
 --- !u!1 &4523055318151884173
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,6 +403,7 @@ MonoBehaviour:
   _coolDownDash: 0.5
   TimeToCatch: 0.2
   _lastDir: {x: 1, y: 0, z: 0}
+  reverseFrenesie: 0
 --- !u!114 &4805073186744834995
 MonoBehaviour:
   m_ObjectHideFlags: 0
