@@ -80,7 +80,10 @@ public class Chapeau : MonoBehaviour
                     Compteur.instance.controllers.Add(mov.PlayerID, 1);
                 }
             }
-            Instantiate(_hit, transform.position, Quaternion.identity);
+            var a = Instantiate(_hit, transform.position, Quaternion.identity);
+            a.transform.position += new Vector3(0, 0, -1);
+            a.GetComponent<ParticleSystem>().Play();
+
             _hasFallen = true;
             _rb.linearDamping = 10;
         }

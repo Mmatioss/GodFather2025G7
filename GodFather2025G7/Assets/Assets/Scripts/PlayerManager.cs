@@ -27,8 +27,16 @@ public class PlayerManager : MonoBehaviour
 
     Dictionary<int, int> controllers = new();
 
+    public Timer tilmer;
+
     public void OnPlayerJoined(PlayerInput playerInput)
     {
+        if (tilmer._currentTime >= 150)
+        {
+            Destroy(playerInput);
+            return;
+        }
+
         int index = NbOfPlayer;
         if (controllers.ContainsKey(playerInput.devices[0].deviceId))
         {

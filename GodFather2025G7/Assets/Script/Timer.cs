@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 public class Timer : MonoBehaviour
 {
+
+
+
     [SerializeField] private float _timeLimit = 240f;
     [SerializeField] private EventManager _eventManager;
     [SerializeField] private TextMeshProUGUI _timerText;
@@ -15,7 +18,7 @@ public class Timer : MonoBehaviour
     [SerializeField] private List<Vector3> _spawnPointBallons = new List<Vector3>();
     [SerializeField] private GameObject _goodBallonPrefab;
     [SerializeField] private GameObject _badBallonPrefab;
-    private float _currentTime;
+    public  float _currentTime;
     private bool _isReduceWall = false;
     private bool _isReduceCamera = false;
 

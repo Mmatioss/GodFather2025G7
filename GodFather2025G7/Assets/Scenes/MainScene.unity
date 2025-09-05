@@ -2839,7 +2839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22891ed2a5d220344975531b4a50427e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeLimit: 180
+  _timeLimit: 45
   _eventManager: {fileID: 416906571}
   _timerText: {fileID: 1362477184}
   _gameOverPanel: {fileID: 297072562}
@@ -2855,6 +2855,7 @@ MonoBehaviour:
   - {x: -8, y: 4, z: 0}
   _goodBallonPrefab: {fileID: 3899881748874919875, guid: 319bccaa7b8b26b4f9c9caea877b3244, type: 3}
   _badBallonPrefab: {fileID: 3899881748874919875, guid: 09b79e260477fa144b37d5cff6feda48, type: 3}
+  _currentTime: 0
 --- !u!4 &1022966983
 Transform:
   m_ObjectHideFlags: 0
@@ -3442,6 +3443,7 @@ MonoBehaviour:
   lamere: {fileID: 1068656113}
   musiqueToPlay: {fileID: 8300000, guid: bb7fb097c16ff82448aa2cb677c4f886, type: 3}
   siffler: {fileID: 1129605765}
+  tilmer: {fileID: 1022966982}
 --- !u!114 &1158731541
 MonoBehaviour:
   m_ObjectHideFlags: 0
