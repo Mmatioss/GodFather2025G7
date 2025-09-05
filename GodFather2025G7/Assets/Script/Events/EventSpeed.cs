@@ -11,30 +11,15 @@ public class event_speed : ParentEvent
 
     void Start()
     {
-        lancerScript = FindFirstObjectByType<lancer>();
-        if (lancerScript != null)
-        {
-            _originalSpeed = lancerScript.ForceDistance;
-        }
-        else
-        {
-            Debug.LogError("lancerScript n'est pas assigné dans event_speed");
-        }
-
-        if (chapeauObject != null)
-        {
-            chapeauAnimator = chapeauObject.GetComponent<Animator>();
-            if (chapeauAnimator == null)
-                Debug.LogError("Animator non trouvé sur le chapeau");
-        }
-        else
-        {
-            Debug.LogError("chapeauObject n'est pas assigné dans event_speed");
-        }
+        
     }
 
     public void DoEvent()
 {
+    var chapeau = FindAnyObjectByType<Chapeau>();
+    chapeauAnimator = chapeau.GetComponent<Animator>();
+    chapeauAnimator.SetBool("anim" , true);
+    print (chapeauAnimator.name);
     var players = FindObjectsByType<lancer>(FindObjectsSortMode.None);
 
     foreach(lancer p in players)
@@ -69,6 +54,7 @@ public class event_speed : ParentEvent
     
     void EndEvent()
     {
+        chapeauAnimator.SetBool("anim" , false);
         lancerScript.ForceDistance = _originalSpeed;
         Debug.Log("Fin de l'event Speed. Vitesse de lancer réinitialisée à: " + _originalSpeed);
 

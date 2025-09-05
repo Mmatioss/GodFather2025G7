@@ -313,14 +313,14 @@ RectTransform:
   m_GameObject: {fileID: 141264203}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.22926, y: 0.22926, z: 0.22926}
+  m_LocalScale: {x: 0.22926, y: 0.42697382, z: 0.22926}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 297072563}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -89}
+  m_AnchoredPosition: {x: 0, y: 2}
   m_SizeDelta: {x: 3500, y: 1063}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &141264205
@@ -810,8 +810,8 @@ RectTransform:
   m_LocalScale: {x: 2.3859, y: 2.3859, z: 2.3859}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 477867752}
   - {fileID: 141264204}
+  - {fileID: 477867752}
   m_Father: {fileID: 1677539077}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1104,7 +1104,7 @@ MonoBehaviour:
     eventObject: {fileID: 921150952}
     message: "Faire le tour de la salle \xE0 cloche pied"
   - name: Speed
-    probability: 1
+    probability: 10
     eventObject: {fileID: 580398357}
     message: Augmente la vitesse du chapeau entre 50 et 100
   - name: MILLLE CHAPOOO
@@ -2395,12 +2395,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 837941608}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5ba66d6f2cb8d14ba2616407843f737, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d0d3942cb08ce34381812e61c09aab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 7
-  nbDeChapeu: 23
-  Chapeau: {fileID: 0}
+  reverseFrenesie: 15
 --- !u!1 &870508587
 GameObject:
   m_ObjectHideFlags: 0
@@ -2840,7 +2838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22891ed2a5d220344975531b4a50427e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeLimit: 61
+  _timeLimit: 211
   _eventManager: {fileID: 416906571}
   _timerText: {fileID: 1362477184}
   _gameOverPanel: {fileID: 297072562}
