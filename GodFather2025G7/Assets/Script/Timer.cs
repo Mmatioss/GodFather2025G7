@@ -67,7 +67,7 @@ public class Timer : MonoBehaviour
                     print("Reduce Wall");
                 }
             }
-            if (_currentTime % 20 == 0)
+            if (_currentTime % 15 == 0)
             {
                 _eventManager.StartWheel();
             }

@@ -483,6 +483,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a7df1b884d9cdd94495ac22cfac9c533, type: 3}
       insertIndex: -1
       addedObject: {fileID: 181714610}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a7df1b884d9cdd94495ac22cfac9c533, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 181714611}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a7df1b884d9cdd94495ac22cfac9c533, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 181714612}
   m_SourcePrefab: {fileID: 100100000, guid: a7df1b884d9cdd94495ac22cfac9c533, type: 3}
 --- !u!4 &181714608 stripped
 Transform:
@@ -509,12 +515,51 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 79.25983, y: 89.624794, z: 105.36026}
   m_Center: {x: -2.188195, y: -10.044732, z: -31.21656}
+--- !u!114 &181714611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181714609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e68c5d5934f818d4b9dee5523c6924bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &181714612
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181714609}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &211875994
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,7 +1177,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: fa66693205ef7c847be2c2df4533c2e9, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.149
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1235,7 +1280,7 @@ MonoBehaviour:
   _eventContainer: {fileID: 789091396}
   _gameObjectEvents:
   - name: Squeezie
-    probability: 1
+    probability: 3
     eventObject: {fileID: 698591819}
     message: 
   - name: Squat
@@ -1243,11 +1288,11 @@ MonoBehaviour:
     eventObject: {fileID: 921150952}
     message: Effectuer 4 squats
   - name: CulSec
-    probability: 1
+    probability: 0
     eventObject: {fileID: 921150952}
     message: CulSec le verre d'eau
   - name: Chapeau
-    probability: 0
+    probability: 1
     eventObject: {fileID: 921150952}
     message: mettre un chapeau
   - name: Course
@@ -1255,7 +1300,7 @@ MonoBehaviour:
     eventObject: {fileID: 921150952}
     message: "Faire le tour de la salle \xE0 cloche pied"
   - name: Speed
-    probability: 1
+    probability: 2
     eventObject: {fileID: 580398357}
     message: 
   - name: MILLLE CHAPOOO
@@ -1263,15 +1308,15 @@ MonoBehaviour:
     eventObject: {fileID: 438623100}
     message: 
   - name: "Fr\xE9n\xE9sie"
-    probability: 1
+    probability: 2
     eventObject: {fileID: 837941608}
     message: 
   - name: Wall
-    probability: 1
+    probability: 2
     eventObject: {fileID: 1473027614}
     message: 
   - name: Mickey
-    probability: 1
+    probability: 2
     eventObject: {fileID: 1901908819}
     message: 
   _UIEventsTxt:
@@ -2985,7 +3030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22891ed2a5d220344975531b4a50427e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeLimit: 180
+  _timeLimit: 120
   _eventManager: {fileID: 416906571}
   _timerText: {fileID: 1362477184}
   _gameOverPanel: {fileID: 297072562}
@@ -5374,7 +5419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mickey: {fileID: 181714609}
   _timeEnable: 8
-  _speed: 6
+  _speed: 12
 --- !u!1 &1904280478
 GameObject:
   m_ObjectHideFlags: 0
@@ -5390,7 +5435,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1904280479
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5600,7 +5645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

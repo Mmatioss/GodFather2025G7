@@ -32,6 +32,11 @@ public class Compteur : MonoBehaviour
     }
 
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.V)) SceneManager.LoadScene(0);
+    }
+ 
     IEnumerator caca()
     {
         yield return new WaitForSeconds(7.897657482f);

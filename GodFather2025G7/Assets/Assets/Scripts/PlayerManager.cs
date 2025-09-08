@@ -31,7 +31,7 @@ public class PlayerManager : MonoBehaviour
 
     public void OnPlayerJoined(PlayerInput playerInput)
     {
-        if (tilmer._currentTime >= 150)
+        if (tilmer._currentTime >= 100)
         {
             Destroy(playerInput);
             return;
